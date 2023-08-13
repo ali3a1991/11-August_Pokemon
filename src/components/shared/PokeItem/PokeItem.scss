@@ -1,0 +1,27 @@
+.item-container{
+  position: relative;
+  padding-top: 80px;
+
+  img{
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+}
+
+.item{
+  background-image: linear-gradient(to right,#FFE1C6, #FFCB05);
+  border-radius: 20px;
+  height: 120px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  
+  div{
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+  }
+}

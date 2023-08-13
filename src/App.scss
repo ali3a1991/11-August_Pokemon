@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Libre+Baskerville&family=Roboto+Slab&family=Roboto:wght@100;400&display=swap');
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+main{
+  background-color: #CCDADD;
+  padding: 25px 20px;
+  border-radius: 30px;
+  min-height: 100vh;
+}
+
