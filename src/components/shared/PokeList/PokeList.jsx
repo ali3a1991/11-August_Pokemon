@@ -11,7 +11,7 @@ function PokeList(props) {
   return (
     <div>
       {props.hasFilter && <div className='bg-blue-300 h-16 flex items-center mt-10 justify-evenly rounded-3xl'>
-        <div className={`type ${pokes.name}`}>{pokes.name}</div>
+        <div className={`type ${pokes.name}`}>{pokes.name.toUpperCase()}</div>
         <div className='cursor-pointer'>
           <FontAwesomeIcon icon={faXmark} size="2xl" style={{color: "#ffffff",}} onClick={props.deleteFilterHandle} />
         </div>
