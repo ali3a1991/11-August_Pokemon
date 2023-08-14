@@ -6,11 +6,18 @@ import { Link } from 'react-router-dom'
 
 function SearchHeader() {
   return (
-    <div className='flex justify-between items-center text-2xl'>
-      <img className='w-40' src={logo} alt="" />
-      <Link to={'/'}>
-        <FontAwesomeIcon icon={faXmark} size="2xl" style={{color: "#ffffff",}} />
-      </Link>
+    <div>
+      <div  className='flex justify-between items-center text-2xl'>
+        <img className='w-40' src={logo} alt="" />
+        <Link to={'/'}>
+          <FontAwesomeIcon icon={faXmark} size="2xl" style={{color: "#ffffff",}} />
+        </Link>
+      </div>
+
+
+      <div className='flex justify-center gap-10 text-4xl mt-10 mb-10 detail-style'>
+        <p>TYPE</p>
+      </div>
       
     </div>
   )

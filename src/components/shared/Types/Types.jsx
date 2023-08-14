@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './Types.scss'
 
@@ -30,7 +30,9 @@ function Types(props) {
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='water' className='type water'>WATER</li></Link>
       </ul>
       :
-      <ul className='type-list'><Link to={`/`}><li className={`type ${props.name}`}>{props.name}</li></Link></ul>}
+      <ul className='type-list'>
+        <Link to={`/`} onClick={props.pokesTypeHandle} ><li data-type={props.name} className={`type ${props.name}`}>{props.name.toUpperCase()}</li></Link>
+      </ul>}
     </>
   )
 }

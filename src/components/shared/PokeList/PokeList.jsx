@@ -8,7 +8,7 @@ function PokeList(props) {
 
   return (
     <ul className='list'>
-      {props.hasFilter ? pokes.map(poke => <PokeItem key={poke.pokemon.id} name={poke.pokemon.name} url={poke.pokemon.url} />) : pokes.map(poke => <PokeItem key={poke.id} name={poke.name} url={poke.url} />)}
+      {props.hasFilter ? pokes.map(poke => <PokeItem key={poke.pokemon.name} name={poke.pokemon.name} url={poke.pokemon.url} />) : pokes.map(poke => <PokeItem key={poke.id} name={poke.name} url={poke.url} />)}
     </ul>
   )
 }

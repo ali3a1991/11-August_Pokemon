@@ -64,7 +64,7 @@ function App() {
         {location === '/' && <PageControl page={page} onChange={limitCardHandle} prevOnClick={() => {PageHandle(-1)}} nextOnClick={() => {PageHandle(+1)}} />}
         <Routes>
           <Route path='/' element={<PokeList hasFilter={hasFilter}/>} />
-          <Route path='/:id' element={<PokeDetail/>} />
+          <Route path='/:id' element={<PokeDetail pokesTypeHandle={pokesTypeHandle}/>} />
           <Route path='/types' element={<SortPoke pokesTypeHandle={pokesTypeHandle}/>} />
         </Routes>
       </PokesDataContext.Provider>
