@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Types from '../../shared/Types/Types';
 import './PokeDetail.scss'
+import Loading from '../../shared/Loading/Loading';
 
 function PokeDetail(props) {
   const pokeId = useParams().id;
@@ -18,7 +19,7 @@ function PokeDetail(props) {
   }, [])
 
   if (isLouding) {
-    return <p>Louding...</p>
+    return <Loading/>
   }
 
   return (

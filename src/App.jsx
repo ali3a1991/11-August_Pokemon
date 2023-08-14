@@ -10,6 +10,7 @@ import PageControl from './components/shared/PageControl/PageControl';
 import SortPoke from './components/Pages/sort/SortPoke';
 import { PokesDataContext } from './context/pokesDataContext';
 import './App.scss';
+import Loading from './components/shared/Loading/Loading';
 
 function App() {
   const [pokes, setPokes] = useState([]);
@@ -18,17 +19,17 @@ function App() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
   const [hasFilter,setHasFilter] = useState(false);
-  const [darkMode, setDarkMode] = useState('')
+  const [darkMode, setDarkMode] = useState('');
 
   const PageHandle = param =>{
     if(page === 1 && param === -1){
       return
     }
-    setPage(page + param)
+    setPage(page + param);
   }
 
   const limitCardHandle =(event) =>{
-    setLimit(event.target.value)
+    setLimit(event.target.value);
   }
 
   const apiFetch = () => {
@@ -38,15 +39,15 @@ function App() {
         const datas = data.results.map((poke) => {
           return  {...poke, id: uuidv4()}
         })
-        setPokes(datas)
-        setIsLaoding(false)
-        setHasFilter(false)
+        setPokes(datas);
+        setIsLaoding(false);
+        setHasFilter(false);
       })
   }
 
   const searchHandle = (event) => {
     if(event.target.value === ''){
-      apiFetch()
+      apiFetch();
     }else{
       fetch(`${pokeApi}?offset=0&limit=100000`)
         .then(res => res.json())
@@ -54,37 +55,37 @@ function App() {
           const datas = data.results.filter((poke) => {
             return  poke.name.includes(event.target.value.toLowerCase())
           })
-          setPokes(datas)
-          setIsLaoding(false)
-          setHasFilter(false)
+          setPokes(datas);
+          setIsLaoding(false);
+          setHasFilter(false);
         })
     }
   }
 
   const deleteFilterHandle = () => {
-    apiFetch()
+    apiFetch();
   }
 
   useEffect(() => {
-    apiFetch()
+    apiFetch();
   }, [page, limit])
 
   const pokesTypeHandle = (event) => {
     fetch(`https://pokeapi.co/api/v2/type/${event.target.dataset.type}`)
       .then(res => res.json())
       .then(data => {
-        setPokes(data)
-        setIsLaoding(false)
-        setHasFilter(true)
+        setPokes(data);
+        setIsLaoding(false);
+        setHasFilter(true);
       })
   }
 
   const darkModeHandle = () => {
-    setDarkMode(prev => prev === '' ? 'darkMode' : '' )
+    setDarkMode(prev => prev === '' ? 'darkMode' : '' );
   }
 
   if(isLaoding){
-    return <p>Louding...</p>
+    return <Loading/>
   }
 
   return (
@@ -98,7 +99,6 @@ function App() {
           <Route path='/types' element={<SortPoke pokesTypeHandle={pokesTypeHandle}/>} />
         </Routes>
       </PokesDataContext.Provider>
-      
     </main>
   )
 }

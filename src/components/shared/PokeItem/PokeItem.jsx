@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './PokeItem.scss'
 import { Link } from 'react-router-dom'
+import Loading from '../Loading/Loading'
 
 function PokeItem(props) {
   const [poke, setPoke] = useState({})
@@ -18,7 +19,7 @@ function PokeItem(props) {
   }, [])
 
   if(isLaoding){
-    return <p>Louding...</p>
+    return <Loading/>
   }
 
   return (
