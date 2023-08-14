@@ -6,7 +6,7 @@ import './Header.scss'
 import { Link, useLocation } from 'react-router-dom'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
-function Header() {
+function Header(props) {
   const location = useLocation().pathname
 
   return (
@@ -23,7 +23,7 @@ function Header() {
         </Link> : 
         <Link to={'/'}><FontAwesomeIcon icon={faChevronLeft} size="2xl" style={{color: "#EBEBEB",}} /></Link>
         }
-        <input type="text" placeholder='Search Pokemon' /> 
+        <input type="text" placeholder='Search Pokemon' onChange={props.searchHandle} /> 
         <FontAwesomeIcon icon={faCircleHalfStroke} size="2xl" style={{color: "#fff",}} />
       </nav>
     </header>

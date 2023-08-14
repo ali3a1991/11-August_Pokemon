@@ -5,7 +5,6 @@ import PokeList from './components/shared/PokeList/PokeList';
 import { v4 as uuidv4 } from 'uuid';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import PokeDetail from './components/Pages/PokeDetail/PokeDetail';
-import Search from './components/Pages/Search/Search';
 import SearchHeader from './components/shared/Header/SearchHeader';
 import PageControl from './components/shared/PageControl/PageControl';
 import SortPoke from './components/Pages/sort/SortPoke';
@@ -31,6 +30,44 @@ function App() {
     setLimit(event.target.value)
   }
 
+  const searchHandle = (event) => {
+    if(event.target.value === ''){
+      fetch(`${pokeApi}?offset=${(page -1 )*limit}&limit=${limit}`)
+      .then(res => res.json())
+      .then(data => {
+        const datas = data.results.map((poke) => {
+          return  {...poke, id: uuidv4()}
+        })
+        setPokes(datas)
+        setIsLaoding(false)
+        setHasFilter(false)
+      })
+    }else{
+      fetch(`${pokeApi}?offset=0&limit=100000`)
+        .then(res => res.json())
+        .then(data => {
+          const datas = data.results.filter((poke) => {
+            return  poke.name.includes(event.target.value.toLowerCase())
+          })
+          setPokes(datas)
+          setIsLaoding(false)
+        })
+    }
+  }
+
+  const deleteFilterHandle = () => {
+    fetch(`${pokeApi}?offset=${(page -1 )*limit}&limit=${limit}`)
+      .then(res => res.json())
+      .then(data => {
+        const datas = data.results.map((poke) => {
+          return  {...poke, id: uuidv4()}
+        })
+        setPokes(datas)
+        setIsLaoding(false)
+        setHasFilter(false)
+      })
+  }
+
   useEffect(() => {
     fetch(`${pokeApi}?offset=${(page -1 )*limit}&limit=${limit}`)
       .then(res => res.json())
@@ -47,23 +84,26 @@ function App() {
     fetch(`https://pokeapi.co/api/v2/type/${event.target.dataset.type}`)
       .then(res => res.json())
       .then(data => {
-        setPokes(data.pokemon)
+        setPokes(data)
         setIsLaoding(false)
         setHasFilter(true)
       })
   }
 
+  
+
   if(isLaoding){
     return <p>Louding...</p>
+
   }
 
   return (
     <main>
       <PokesDataContext.Provider value={pokes}>
-        {location === '/types' ? <SearchHeader/> : <Header/>}
-        {location === '/' && <PageControl page={page} onChange={limitCardHandle} prevOnClick={() => {PageHandle(-1)}} nextOnClick={() => {PageHandle(+1)}} />}
+        {location === '/types' ? <SearchHeader/> : <Header searchHandle={searchHandle} />}
+        {location === '/' && hasFilter === false && <PageControl page={page} onChange={limitCardHandle} prevOnClick={() => {PageHandle(-1)}} nextOnClick={() => {PageHandle(+1)}} />}
         <Routes>
-          <Route path='/' element={<PokeList hasFilter={hasFilter}/>} />
+          <Route path='/' element={<PokeList hasFilter={hasFilter} deleteFilterHandle={deleteFilterHandle} />} />
           <Route path='/:id' element={<PokeDetail pokesTypeHandle={pokesTypeHandle}/>} />
           <Route path='/types' element={<SortPoke pokesTypeHandle={pokesTypeHandle}/>} />
         </Routes>

@@ -7,12 +7,15 @@ function PokeItem(props) {
   const [isLaoding, setIsLaoding] = useState(true)
 
   useEffect(() => {
-    fetch(props.url)
-      .then(res => res.json())
-      .then(data => {
-        setPoke(data)
-        setIsLaoding(false)
-      })
+    const setTime = setTimeout(() => {
+      fetch(props.url)
+        .then(res => res.json())
+        .then(data => {
+          setPoke(data)
+          setIsLaoding(false)
+        })
+    },200)
+
   }, [])
 
   if(isLaoding){
@@ -24,7 +27,7 @@ function PokeItem(props) {
       <li className='item-container'>
         <img src={poke.sprites.other.home.front_default} alt="" />
         <div className='item'>
-          <div>
+          <div className='flex flex-wrap'>
             <p>{poke.id < 10 ? `#00${poke.id}` : poke.id < 100 ? `#0${poke.id}` : `#${poke.id}`}</p>
             <p>{props.name}</p>
           </div>
