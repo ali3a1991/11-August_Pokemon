@@ -15,7 +15,6 @@ function PokeItem(props) {
           setIsLaoding(false)
         })
     },200)
-
   }, [])
 
   if(isLaoding){

@@ -18,6 +18,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20);
   const [hasFilter,setHasFilter] = useState(false);
+  const [darkMode, setDarkMode] = useState('')
 
   const PageHandle = param =>{
     if(page === 1 && param === -1){
@@ -55,6 +56,7 @@ function App() {
           })
           setPokes(datas)
           setIsLaoding(false)
+          setHasFilter(false)
         })
     }
   }
@@ -77,17 +79,18 @@ function App() {
       })
   }
 
-  
+  const darkModeHandle = () => {
+    setDarkMode(prev => prev === '' ? 'darkMode' : '' )
+  }
 
   if(isLaoding){
     return <p>Louding...</p>
-
   }
 
   return (
-    <main>
+    <main className={darkMode}>
       <PokesDataContext.Provider value={pokes}>
-        {location === '/types' ? <SearchHeader/> : <Header searchHandle={searchHandle} />}
+        {location === '/types' ? <SearchHeader/> : <Header searchHandle={searchHandle} darkModeHandle={darkModeHandle} />}
         {location === '/' && hasFilter === false && <PageControl page={page} onChange={limitCardHandle} prevOnClick={() => {PageHandle(-1)}} nextOnClick={() => {PageHandle(+1)}} />}
         <Routes>
           <Route path='/' element={<PokeList hasFilter={hasFilter} deleteFilterHandle={deleteFilterHandle} />} />

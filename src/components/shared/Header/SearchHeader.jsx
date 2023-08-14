@@ -13,8 +13,6 @@ function SearchHeader() {
           <FontAwesomeIcon icon={faXmark} size="2xl" style={{color: "#ffffff",}} />
         </Link>
       </div>
-
-
       <div className='flex justify-center gap-10 text-4xl mt-10 mb-10 detail-style'>
         <p>TYPE</p>
       </div>

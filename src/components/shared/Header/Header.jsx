@@ -24,7 +24,9 @@ function Header(props) {
         <Link to={'/'}><FontAwesomeIcon icon={faChevronLeft} size="2xl" style={{color: "#EBEBEB",}} /></Link>
         }
         <input type="text" placeholder='Search Pokemon' onChange={props.searchHandle} /> 
-        <FontAwesomeIcon icon={faCircleHalfStroke} size="2xl" style={{color: "#fff",}} />
+        <div className='cursor-pointer'>
+          <FontAwesomeIcon icon={faCircleHalfStroke} size="2xl" style={{color: "#fff",}} onClick={props.darkModeHandle} />
+        </div>
       </nav>
     </header>
   )
