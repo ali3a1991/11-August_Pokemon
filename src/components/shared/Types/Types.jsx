@@ -11,7 +11,7 @@ function Types(props) {
       <ul className='type-list'>
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='bug' className='type bug'>BUG</li></Link>
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='dark' className='type dark'>DARK</li></Link>
-        <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='drogon' className='type drogon'>DROGON</li></Link>
+        <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='dragon' className='type dragon'>DRAGON</li></Link>
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='electric' className='type electric'>ELECTRONIC</li></Link>
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='fairy' className='type fairy'>FAIRY</li></Link>
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='fighting' className='type fighting'>FIGHTING</li></Link>
@@ -22,7 +22,7 @@ function Types(props) {
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='ground' className='type ground'>GROUND</li></Link>
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='ice' className='type ice'>ICE</li></Link>
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='normal' className='type normal'>NORMAL</li></Link>
-        <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='plant' className='type plant'>PLANT</li></Link>
+        <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='unknown' className='type plant'>PLANT</li></Link>
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='poison' className='type poison'>POISON</li></Link>
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='psychic' className='type psychic'>PSYCHIC</li></Link>
         <Link to={'/'} onClick={props.pokesTypeHandle} ><li data-type='rock' className='type rock'>ROCK</li></Link>
