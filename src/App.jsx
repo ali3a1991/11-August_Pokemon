@@ -30,9 +30,8 @@ function App() {
     setLimit(event.target.value)
   }
 
-  const searchHandle = (event) => {
-    if(event.target.value === ''){
-      fetch(`${pokeApi}?offset=${(page -1 )*limit}&limit=${limit}`)
+  const apiFetch = () => {
+    fetch(`${pokeApi}?offset=${(page -1 )*limit}&limit=${limit}`)
       .then(res => res.json())
       .then(data => {
         const datas = data.results.map((poke) => {
@@ -42,6 +41,11 @@ function App() {
         setIsLaoding(false)
         setHasFilter(false)
       })
+  }
+
+  const searchHandle = (event) => {
+    if(event.target.value === ''){
+      apiFetch()
     }else{
       fetch(`${pokeApi}?offset=0&limit=100000`)
         .then(res => res.json())
@@ -56,28 +60,11 @@ function App() {
   }
 
   const deleteFilterHandle = () => {
-    fetch(`${pokeApi}?offset=${(page -1 )*limit}&limit=${limit}`)
-      .then(res => res.json())
-      .then(data => {
-        const datas = data.results.map((poke) => {
-          return  {...poke, id: uuidv4()}
-        })
-        setPokes(datas)
-        setIsLaoding(false)
-        setHasFilter(false)
-      })
+    apiFetch()
   }
 
   useEffect(() => {
-    fetch(`${pokeApi}?offset=${(page -1 )*limit}&limit=${limit}`)
-      .then(res => res.json())
-      .then(data => {
-        const datas = data.results.map((poke) => {
-          return  {...poke, id: uuidv4()}
-        })
-        setPokes(datas)
-        setIsLaoding(false)
-      })
+    apiFetch()
   }, [page, limit])
 
   const pokesTypeHandle = (event) => {
